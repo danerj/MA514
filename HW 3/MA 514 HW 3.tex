@@ -1,0 +1,173 @@
+\documentclass[11pt]{article}
+\setlength{\parindent}{0pt}
+
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{indentfirst}
+
+\title{MA 514 Homework 3}
+\author{Dane Johnson}
+
+\begin{document}
+\maketitle
+
+\section*{Exercise 6.1}
+
+If $P$ is an orthogonal projector, then $I-2P$ is unitary. Prove this algebraically, and given a geometric interpretation. \\
+
+\textbf{Answer:} Suppose $P$ is an orthogonal projector. Since $P$ is a projector, $P^2 = P$ by definition. By Theorem 6.1, $P$ is orthogonal if and only if $P = P^*$. To show that $I-2P$ is unitary, we need to show $(I-2P)^*(I-2P) = (I-2P)(I-2P)^* = I$. 
+
+\begin{align*}
+(I-2P)^*(I-2P) &= (I^*-2P^*)(I-2P) = (I-2P)(I-2P) \\ &= I^2 - 4P +4P^2 = I-4P + 4P = I
+\end{align*}
+
+\begin{align*}
+(I-2P)(I-2P)^* &= (I-2P)(I^*-2P^*) = (I-2P)(I-2P) \\ &= I^2 - 4P +4P^2 = I-4P + 4P = I
+\end{align*}
+
+\section*{Exercise 6.2}
+
+Let $E$ be the $m\times m$ matrix that extracts the "even part" of an $m$-vector: $Ex = (x+Fx)/2$, where $F$ is the $m\times m$ matrix that flips $(x_1,...,x_m)^*$ to $(x_m,...,x_1)^*$. Is $E$ is an orthogonal projector, an oblique projector, or not a projector at all?  What are the entries of $E$? \\
+
+\textbf{Answer:} First note that for any $x = (x_1,...,x_m)^* \in \mathbb{C}^m$, we have $F^2x = F(Fx) = F(F(x_1,...,x_m)^*) = F(x_m,...,x_1)^* = (x_1,...,x_m)^*$. This shows that $F^2 = I$. To see if $E$ is a projector, we check whether $E^2 = E$ to meet the definition.
+
+$$E^2 = \frac{I+F}{2}\frac{I+F}{2} = \frac{I^2 + 2F + F^2}{4} = \frac{I +2F + I}{4} = \frac{I + F}{2} = E \;.$$
+
+Therefore, we know at least that $E$ is a projector. To see if $E$ is orthogonal, we check whether $E^* = E$ (according to Theorem 6.1). First note that for $F$ to perform the transformation as the problem statement describes, it must be that $F$ is the $m\times m$ matrix with ones on the antidiagonal and zeros elsewhere. That is,
+
+$$F = \begin{pmatrix}
+0&0&...&0&1\\ 0&0&...&1&0\\ :&:&...&:&:\\ 0&1&...&0&0 \\ 1&0&...&0&0
+\end{pmatrix} \quad \text{so that}\quad F(x_1,...,x_m)^* = (x_m,...,x_1)^* \;.$$
+
+But then since all elements of $F$ are real and the elements on the antidiagonal of $F$ are all the same, $F^* = F$. Using this fact,
+
+$$E^* = \left(\frac{I+F}{2}\right)^* = \frac{I^* + F^*}{2} = \frac{I+F}{2} = E \;.$$
+
+Therefore, we see that $E$ is an orthogonal projector. Since we defined an \textit{oblique projector} to be a projector that is not an orthogonal projector, we conclude that $E$ is not an oblique projector. \\
+
+The entries of $E$ are such that there are 1's along the main diagonal and 1's along the antidiagonal. If $E$ is $n \times n$ for $n$ an odd integer, however, these 1's intersect in the very middle entry of the matrix and so in this case there is a 2 in the middlemost entry of $E$. 
+
+\section*{6.4}
+
+Consider the matrices
+
+$$A = \begin{pmatrix}
+1 & 0 \\ 0 & 1 \\ 1 & 0
+\end{pmatrix}\, , \quad B = \begin{pmatrix}
+1 & 2 \\ 0 & 1 \\ 1 & 0
+\end{pmatrix} \; .$$
+
+(a) What is the orthogonal projector $P$ onto range$(A)$, and what is the image under $P$ of the vector $(1,2,3)^*$. \\
+
+\textbf{Answer:} It is immediate that the columns of $A$ span range$(A)$ and since the columns of $A$ are linearly independent, the reasoning on page 46 applies so that we can use equation (6.13) to find $P$. Then,
+
+\begin{align*}
+P &= A(A^*A)^{-1}A^* \\
+&= \begin{pmatrix}
+1 & 0 \\ 0 & 1 \\ 1 & 0
+\end{pmatrix}\left(\begin{pmatrix} 1&0&1 \\ 0&1&0 \end{pmatrix} \begin{pmatrix}
+1 & 0 \\ 0 & 1 \\ 1 & 0
+\end{pmatrix}\right)^{-1} \begin{pmatrix} 1&0&1 \\ 0&1&0 \end{pmatrix} \\
+&= \begin{pmatrix}
+1 & 0 \\ 0 & 1 \\ 1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+2&0 \\  0 & 1
+\end{pmatrix}^{-1}
+\begin{pmatrix} 1&0&1 \\ 0&1&0 \end{pmatrix} \\
+&= \begin{pmatrix}
+1 & 0 \\ 0 & 1 \\ 1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+1/2&0 \\  0 & 1
+\end{pmatrix}
+\begin{pmatrix} 1&0&1 \\ 0&1&0 \end{pmatrix} \\
+&= \begin{pmatrix}
+1/2 & 0 & 1/2 \\ 0& 1 & 0 \\ 1/2 & 0 & 1/2
+\end{pmatrix} \;.
+\end{align*}
+
+$$P(1,2,3)^* = \begin{pmatrix}
+1/2 & 0 & 1/2 \\ 0& 1 & 0 \\ 1/2 & 0 & 1/2
+\end{pmatrix} \begin{pmatrix}
+1\\  2 \\ 3
+\end{pmatrix} = \begin{pmatrix}
+2 \\ 2 \\2 
+\end{pmatrix} \;.$$
+
+(b) What is the orthogonal projector $P$ onto range$(B)$, and what is the image under $P$ of the vector $(1,2,3)^*$. \\
+
+\textbf{Answer:} Just as before, since the columns of $B$ are a basis for range$(B)$ we may apply equation (6.13). Then,
+
+\begin{align*}
+P &= B(B^*B)^{-1}B^* \\
+&= \begin{pmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{pmatrix}
+\left(\begin{pmatrix} 1&0&1 \\ 2&1&0 \end{pmatrix}
+\begin{pmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{pmatrix}\right)^{-1}\begin{pmatrix} 1&0&1 \\ 2&1&0 \end{pmatrix} \\
+&=\begin{pmatrix} 5/6 & 1/3 & 1/6 \\ 1/3 & 1/3 & -1/3 \\ 1/6 & -1/3 & 5/6\end{pmatrix} \;.
+\end{align*}
+
+$$P(1,2,3)^* = \begin{pmatrix} 5/6 & 1/3 & 1/6 \\ 1/3 & 1/3 & -1/3 \\ 1/6 & -1/3 & 5/6\end{pmatrix}
+\begin{pmatrix}1 \\ 2 \\ 3 \end{pmatrix} = 
+\begin{pmatrix}
+2 \\ 0 \\ 2
+\end{pmatrix} \;.$$
+
+\section*{Exercise 7.1}
+Consider again the matrices $A$ and $B$ of Exercise 6.4.\\
+
+(a) Using any method you like, determine (on paper) a reduced QR factorization $A = \hat{Q}\hat{R}$ and a full QR factorization $A = QR$.\\
+
+\textbf{Answer:} Denote the columns of $A$ by $a_1$ and $a_2$. 
+$$\bullet \quad q_1 = \frac{a_1}{r_{11}} = \frac{a_1}{||a_1||_2} = \begin{pmatrix}
+\frac{1}{\sqrt{2}} \\ 0 \\ \frac{1}{\sqrt{2}} \end{pmatrix}$$
+$$\bullet \quad q_2 = \frac{a_2 - r_{12}q_1}{r_{22}}, \quad r_{12} = q_1^*a_2, \quad r_{22} = ||a_2 - r_{12}q_1||_2$$
+$$r_{12} = \begin{pmatrix}1/\sqrt{2} & 0 & 1/\sqrt{2}\end{pmatrix} \begin{pmatrix}
+0 \\ 1 \\ 0
+\end{pmatrix} = 0$$
+$$r_{22}  = ||a_2 - 0q_1||_2 = 1$$
+$$q_2 = \frac{a_2-0q_1}{r_{22}} = a_2 = \begin{pmatrix}
+0\\1\\0
+\end{pmatrix}$$
+
+$$\bullet \quad A = \hat{Q}\hat{R} = \begin{pmatrix}\frac{1}{\sqrt{2}}&0 \\ 0&1 \\ \frac{1}{\sqrt{2}} &0\end{pmatrix}
+\begin{pmatrix}
+\sqrt{2} &0 \\ 0 & 1
+\end{pmatrix} \; .$$
+
+To get a full QR factorization we need to add a third column $q_3$ to $\hat{Q}$ such that $\{q_1,q_2,q_3\}$ are orthonormal and then add a row of zeros to $\hat{R}$. By inspection, $q_3 = \frac{1}{\sqrt{2}}(1,0,-1)^*$ will work. Therefore, a full QR factorization is:
+
+$$A = QR = \begin{pmatrix}\frac{1}{\sqrt{2}}&0& \frac{1}{\sqrt{2}}\\ 0&1& 0 \\ \frac{1}{\sqrt{2}} &0 &-\frac{1}{\sqrt{2}}\end{pmatrix}
+\begin{pmatrix} \sqrt{2} &0 \\ 0 & 1 \\ 0 & 0\end{pmatrix} \; .$$
+
+
+(b) Again using any method you like, determine reduced and full QR factorizations $B = \hat{Q}\hat{R}$ and $B = QR$. \\
+
+\textbf{Answer:} Denote the columns of $B$ by $b_1$ and $b_2$. Since $b_1 = a_1$, $q_1$ and $r_{11}$ are the same as in part (a). Next,
+
+$$q_2 = \frac{b_2 - r_{12}q_1}{r_{22}}, \quad r_{12} = q_1^*b_2, \quad r_{22} = ||b_2 - r_{12}q_1||_2$$
+$$r_{12} = \begin{pmatrix} \frac{1}{\sqrt{2}} & 0 & \frac{1}{\sqrt{2}}\end{pmatrix} \begin{pmatrix} 2 \\ 1 \\ 0 \end{pmatrix} = \sqrt{2}$$
+$$b_2 - r_{12}q_1 = \begin{pmatrix} 2 \\ 1 \\ 0 \end{pmatrix} - \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} =
+\begin{pmatrix} 1 \\ 1 \\ -1 \end{pmatrix} \implies r_{22} = \sqrt{3}$$
+$$q_2 = \begin{pmatrix}\frac{1}{\sqrt{3}} \\ \frac{1}{\sqrt{3}} \\ \frac{-1}{\sqrt{3}}\end{pmatrix}$$
+
+So we have the reduced QR factorization of $B$ given by:
+
+$$B = \hat{Q}\hat{R} =
+\begin{pmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{3}} \\
+0 & \frac{1}{\sqrt{3}} \\
+\frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{3}}\end{pmatrix}
+\begin{pmatrix}
+\sqrt{2} &\sqrt{2} \\ 0 & \sqrt{3} \end{pmatrix}$$
+
+To find a full QR factorization, we find that any multiple of $(-1, 2, 1)^*$ will be orthogonal to $q_1$ and $q_2$. So normalizing this vector gives an option for $q_3$ so that:
+
+$$B = QR = \begin{pmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{3}}& \frac{-1}{\sqrt{6}} \\
+0 & \frac{1}{\sqrt{3}} & \frac{2}{\sqrt{6}}\\
+\frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{3}} & \frac{1}{\sqrt{6}}\end{pmatrix}
+\begin{pmatrix}
+\sqrt{2} &\sqrt{2} \\ 0 & \sqrt{3}  \\ 0 & 0\end{pmatrix} \; .$$
+
+\end{document}

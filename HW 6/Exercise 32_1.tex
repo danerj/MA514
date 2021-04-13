@@ -1,0 +1,26 @@
+\documentclass[11pt]{article}
+\setlength{\parindent}{0pt}
+
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{indentfirst}
+
+\title{MA 514 Homework 6 Written Portion}
+\author{Dane Johnson}
+
+\begin{document}
+\maketitle
+
+\section*{Exercise 32.1}
+
+If the largest triangle has diameter $d$ and there are $n$ triangles used in total, the surface area, $s$ is
+
+$$nd^2 = s \;.$$
+
+Increasing the accuracy by one digit reduces the error by an order of magnitude and so the diameter of the largest triangle should be one tenth the size as before. But the surface area doesn't change. For a dense matrix the operation is $\mathcal{O}(m^3)$ and so the new calculation time is:
+
+$$t = \frac{(100n)^3}{n^3/60} \approx 277.77 \text{ hours}$$.
+
+\end{document}

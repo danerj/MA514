@@ -1,0 +1,225 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{indentfirst}
+
+\title{MA 514 Homework 1}
+\author{Dane Johnson}
+
+\begin{document}
+\maketitle
+
+\section*{Exercise 1.1}
+
+(a) The product must be split up into two lines to fit on the page. Note that by 'delete column 1' in step 7 we interpret this to mean that the first column of the matrix should be removed entirely in contrast with the possible interpretation that the first column of the matrix should be zeroed out. 
+
+$$\begin{pmatrix}
+1 & -1 & 0 & 0 \\ 0 &1 & 0 & 0 \\ 0 & -1 & 1 & 0 \\ 0 &-1 &0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 & 1 & 0 \\ 0 &1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 &0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\ 0 &1 & 0 & 0 \\ 0 & 0 & \frac{1}{2} & 0 \\ 0 & 0 &0 & 1
+\end{pmatrix}
+B
+\begin{pmatrix}
+2 & 0 & 0 & 0 \\ 0 &1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 &0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+0 & 0 & 0 & 1 \\ 0 &1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 1 & 0 &0 & 0
+\end{pmatrix}
+$$
+$$
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\ 0 &1 & 0 & 0 \\ 0 & 0 & 1 & 1 \\ 0 & 0 &0 & 0
+\end{pmatrix}
+\begin{pmatrix}
+0 & 0 & 0 \\ 1 & 0 & 0 \\  0 & 1 & 0\\  0 &0 & 1
+\end{pmatrix}
+$$
+
+\section*{Exercise 1.2}
+
+(a) We wish to write a matrix equation of the form:
+
+$$\begin{pmatrix} f_1 \\ f_2 \\ f_3 \\ f_4 \end{pmatrix} = f = Kx = K\begin{pmatrix}x_1 \\ x_2 \\ x_3 \\x_4 \end{pmatrix} \;.$$
+
+We find individual force equations of the system to be:
+
+$$f_1 = k_{12}(x_2 - x_1 - l_{12})$$
+$$f_2 = k_{23}(x_3 - x_2 - l_{23})$$
+$$f_3 = k_{34}(x_4 - x_3 - l_{34})$$
+$$f_4 = 0$$
+
+We can collect this information into an intermediate step in writing the matrix equation given by:
+
+$$\begin{pmatrix} f_1 \\ f_2 \\ f_3 \\ f_4
+\end{pmatrix} =
+\begin{pmatrix}
+-k_{12} & k_{12} & 0 & 0 \\ 0 & -k_{23} & k_{23} & 0 \\
+0 & 0 & -k_{34} & k_{34} \\ 0 & 0 & 0 & 0
+\end{pmatrix}
+\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\x_4
+\end{pmatrix}
+ + \begin{pmatrix} -k_{12}l_{12} \\ -k_{23}l_{23} \\ -k_{34}l_{34} \\ 0 \end{pmatrix}
+$$
+It is only possible to rewrite this equation in the form $f = Kx$ by using the fact that $x_1,x_2,x_3,x_4 \neq 0$ and factoring these values out to arrive at:
+
+$$f = \begin{pmatrix} f_1 \\ f_2 \\ f_3 \\ f_4
+\end{pmatrix} =
+\begin{pmatrix}
+-k_{12}-\frac{k_{12}l_{12}}{x_1} & k_{12} & 0 & 0 \\ 0 & -k_{23}-\frac{k_{23}l_{23}}{x_2} & k_{23} & 0 \\
+0 & 0 & -k_{34}-\frac{k_{34}l_{34}}{x_3} & k_{34} \\ 0 & 0 & 0 & 0
+\end{pmatrix}
+\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\x_4
+\end{pmatrix} = Kx$$
+
+\section*{Exercise 1.3}
+
+Let $R \in \mathbb{C}^{m\times m}$ by an upper triangular matrix, i.e., $r_{in} = 0$ if $i>n$ and suppose that $R$ is nonsingular. We will show that $R^{-1}$ is also upper triangular. If we denote the $i,n$ entry of $R^{-1}$ by $r_{in}^{-1}$ this means we must show that $r_{in}^{-1} = 0$ if $i>n$.\\
+
+Since $R$ is nonsingular, the columns of $R$ are linearly independent. In particular if we consider the first $n \leq m$ columns of $R$, which we denote by $R_1, R_2,...,R_n$, this subcollection of columns of $R$ must also be linearly independent. Since $r_{ij} = 0$ for $i>j$, the set $\{R_1,...,R_n\}$ spans the vector space $\{ y \in \mathbb{C}^m \; : \; y_i = 0 \text{ if } i>n\}$ and because $R_1,...,R_n$ are linearly independent, they form a basis for this vector space. Now consider the product
+$$I = RR^{-1} = \begin{bmatrix} R_1 & R2 & ... & R_m \end{bmatrix} R^{-1} \;.$$ 
+
+Note that the $n^{th}$ (with $n\leq m$) column of $I$ is the canonical unit vector $e_n$ and the equation above shows that $e_n$ is the results of taking the linear combination of $R_1,...,R_n,..,R_m$ with the coefficients as the elements of the $n^{th}$ column of $R^{-1}$. That is, using equation 1.8, we have
+$$e_n = \sum_{i=1}^{m} r_{in}^{-1}R_i = r_{1n}^{-1}R_1 + r_{2n}^{-1}R_2 + ... r_{nn}^{-1}R_n + ... + r_{mn}^{-1}R_m \;.$$
+
+Since $R$ is nonsingular, the coefficients $r_{in}^{-1}$ in the equation above are uniquely defined by Theorem 1.2. But since $e_n$ has all zero entries for any entry beyond the $n^{th}$ position (if $n = m$ this reasoning will still apply but there are no zero entries below the $m^{th}$ position), we see that $e_n$ is in the span of the columns $\{R_1,...,R_n\}$. This means that
+$$ e_n = \sum_{i=1}^{n} r_{in}^{-1}R_i$$ where the coefficients are the same as in the previous equation because if other coefficients were possible this would contradict the fact that the columns of $R$ (and therefore the first $n$ columns) are linearly independent. Thus,
+
+$$e_n = \sum_{i=1}^{n} r_{in}^{-1}R_i = \sum_{i=1}^{m} r_{in}^{-1}R_i$$
+
+which implies that $r_{in}^{-1} = 0 $ if $i>n$. But since $n$ was an arbitrary integer such that $1\leq n \leq m$, we have shown by the definition of an upper triangular matrix that $R_{-1}$ is upper triangular. 
+
+\section*{Exercise 1.4}
+Let $f_1,...,f_8 : [0,8] \rightarrow \mathbb{C}$ be a set of functions with the property that for any choice of numbers $d_1,...,d_8 \in \mathbb{C}$ there exists a set of coefficients $c_1,...,c_8 \in \mathbb{C}$ such that 
+
+$$\sum_{j=1}^8 c_jf_j(i) = d_i \quad i = 1,...,8.$$
+
+(a) We will show that choosing $d_1,...,d_8$ will determine $c_1,...,c_8$ uniquely. \\
+
+Fix an arbitrary selection $d_1,...,d_8$. By hypothesis we have the system of equations 
+\begin{align*}
+d_1 &= c_1f_1(1) + c_2f_2(1) + ... + c_8f_8(1) \\
+d_2 &= c_1f_1(2) + c_2f_2(2) + ... + c_8f_8(2) \\
+&...\\
+d_8 &= c_1f_1(8) + c_2f_2(8) + ... + c_8f_8(8)
+\end{align*}
+which gives the matrix equation
+
+$$d =: \begin{pmatrix} d_1 \\ d_2 \\ ... \\ d_8 \end{pmatrix}=
+\begin{pmatrix}
+f_1(1) & f_2(1) & ... & f_8(1) \\
+f_1(2) & f_2(2) & ... & f_8(2) \\
+... & ... & ... & ...\\
+f_1(8) & f_2(8) & ... & f_8(8)
+\end{pmatrix} \begin{pmatrix}c_1 \\ c_2 \\... \\c_8\end{pmatrix} := Fc
+$$
+
+Using the notation defined above, our hypothesis guarantees:
+For any $d \in \mathbb{C}^8$, there exists an element $c \in \mathbb{C}^8$ such that $d = Fc$. But this statement means that for the matrix $F \in \mathbb{C}^{8 \times 8}$, range$(F) = \mathbb{C}^8$. By Theorem 1.3, this is equivalent to the statement that rank$(F) = 8$, i.e., $F$ is a full rank $8 \times 8$ matrix. Then by Theorem 1.2, $F$ maps two distinct vectors to the same vector. In other words, the vector $c$ is uniquely determined and therefore we conclude that the elements of $c$, which are $c_1,...,c_8$ are uniquely determined by $d_1,...,d_8$, which are the elements of $d$.
+
+\section*{Exercise 2.2}
+
+The Pythagorean theorem asserts that for a set of $n$ orthogonal vectors $\{x_i\}$,
+$$\lVert\sum_{i=1}^n x_i \rVert ^2 = \sum_{i=1}^n \lVert x_i \rVert ^2 \;.$$
+
+(a) Prove this in the case $n=2$ by an explicit computation of $\lVert x_1 + x_2 \rVert ^2$. \\
+
+\begin{align*}
+||x_1+x_2||^2 &= (x_1+x_2)^*(x_1+x_2) \\
+&=x_1^*(x_1+x_2) + x_2^*(x_1+x_2) \quad \text{ (by bilinearity)}\\
+&= x_1^*x_1 + x_1^*x_2 + x_2^*x_1 + x_2^*x_2 \quad \text{ (by bilinearity)}\\
+&=x_1^*x_1 + 0 + 0 + x_2^*x_2 \quad \text{ (by orthogonality)}\\
+&=||x_1||^2 + ||x_2||^2 \quad \text{ (by definition of Euclidean length)}
+\end{align*}\\
+
+(b) For $n=1$, the assertion is immediate seen to hold since this becomes
+$$||x_1||^2 = ||x_1||^2\;.$$
+
+(Note that if the base case in an inductive proof was supposed to be the case $n=2$ then we have also already established this in part a). \\
+
+Assume the inductive hypothesis. That is, assume it is true that for some $n \in \mathbb{N}$,
+
+$$\lVert\sum_{i=1}^n x_i \rVert ^2 = \sum_{i=1}^n \lVert x_i \rVert ^2 \;.$$
+
+Now consider the case for $n+1$ orthogonal vectors. We will use the fact that $\sum_{i=1}^n x_i$ is actually just a vector (the sume of vectors is a vector) and that the vector $\sum_{i=1}^n x_i$ is orthogonal to the vector $x_{n+1}$ since $$x_{n+1}^*\left(\sum_{i=1}^n x_i\right) = \sum_{i=1}^n x_{n+1}^*x_i = \sum_{i=1}^n 0 = 0\;.$$
+
+This means we may apply the result of part a to the two vectors $\sum_{i=1}^n x_i$ and $x_{n+1}$:
+
+\begin{align*}
+||\sum_{i=1}^{n+1} x_i ||^2 &= ||\sum_{i=1}^n x_i + x_{n+1}||^2\\
+&= ||\sum_{i=1}^n x_i||^2 + ||x_{n+1}||^2 \quad \text{ (by part a)}\\
+&= \sum_{i=1}^n ||x_i||^2 + ||x_{n+1}||^2 \quad \text{ (by induction hypothesis)}\\
+&= \sum_{i=1}^{n+1} ||x_i||^2
+\end{align*}
+
+\section*{Exercise 2.3}
+
+Let $A \in \mathbb{C}^{m\times m}$ be hermitian, i.e. $A = A^* = \overline{A^T} = (\bar{A})^T$. An eigenvector of $A$ is a nonzero vector $x \in \mathbb{C}^{m}$ such that $Ax  = \lambda x$ for some $\lambda \in \mathbb{C}$, the corresponding eigenvalue. \\
+
+(a) Prove that all eigenvalues of $A$ are real. \\
+
+Let $(\lambda, x)$ be an eigenvalue, eigenvector pair for the hermitian matrix $A \in \mathbb{C}^{m\times m}$. We have:
+
+\begin{align*}
+Ax &= \lambda x\\
+x^*Ax &= x^*\lambda x\\
+(x^*Ax)^* &= (x^*\lambda x)^*\\
+x^*A^*(x^*)^* &= x^*\overline{\lambda}(x^*)^* \quad (\text{using bilinearity and eqn 2.4})\\
+x^*A^*x &= \overline{\lambda}x^*x\quad (\text{since }\;(x^*)^* = x\;) \\
+x^*Ax &= \overline{\lambda}x^*x \quad \quad (A = A^*)\\
+x^*\lambda x &= \overline{\lambda}x^*x
+\end{align*}
+
+
+Since $x^*\lambda x = \lambda x^* x$, we see that $\lambda x^*x = \overline{\lambda}x^*x$ and since $x \neq 0$ it follows that $x*x >0$. Therefore it must be the case that $\lambda = \overline{\lambda}$, which means that $\lambda \in \mathbb{R}$. Since $\lambda$ was an arbitrary eigenvalue, we conclude that all eigenvalues of $A$ are real. \\
+
+(b) Prove that if $x$ and $y$ are eigenvectors corresponding to distinct eigenvalues, then $x$ and $y$ are orthogonal. \\
+
+Let $x,y$ be eigenvectors of the hermitian matrix $A \in \mathbb{C}^{m\times m}$ corresponding to eigenvalues $\lambda_x, \lambda_y$ so that $Ax = \lambda_x x$ and $Ay = \lambda_y y$. We have:
+
+\begin{align*}
+Ay &= \lambda_y y \\
+x^*Ay &= x^*\lambda_y y \\
+(x^*Ay)^* &= (x^*\lambda_y y)^*\\
+y^*A^*x &= y^*\overline{\lambda_y}x\\
+y^*(Ax) &= \lambda_yy^*x \quad \overline{\lambda_y} = \lambda_y \text{ by part a}\\
+y^*\lambda_x x &= \lambda_y y^*x \\
+\lambda_x y^* x &= \lambda_yy^*x \\
+\end{align*}
+ 
+Suppose that $x,y$ are not orthogonal so that $y^*x \neq 0$. Then this last equality would show that $\lambda_x = \lambda_y$, which is a contradiction. Therefore, we must conclude that $y^*x = 0$ meaning that $x$ and $y$ are orthogonal. 
+
+\section*{Exercise 2.4}
+What can be said about the eigenvalues of a unitary matrix?\\
+
+Response: If $\lambda$ is an eigenvalue of the unitary matrix $Q \in \mathbb{C}^{m\times m}$ then $|\lambda | = 1$.\\
+
+Proof: Since $Q$ is unitary, we have $Q^*Q = QQ^* = I$. We have $Qx = \lambda x$ which means that $||Qx|| = ||\lambda x||$. But by equation 2.10 we also have $||Qx||  = ||x||$. Also, since $||\lambda x|| = |\lambda x||$ it follows that $||x|| = |\lambda| ||x||$. Since $x$ is an eigenvector, $x \neq 0$ and so $||x|| >0$. Dividing through by $||x||$ we arrive at $1 = |\lambda|$. 
+
+\section*{Exercise 2.5}
+Let $S \in \mathbb{C}^{m\times m}$ be skew-hermitian, i.e., $S^* = -S$. \\
+
+(a) Show by Exercise 2.3 that the eigenvalues of $S$ are pure imaginary. \\
+
+Let $\lambda \in \mathbb{C}$ be an eigenvalue of the skew-hermitian matrix $S$ with $\lambda = a+bi$ for some $a,b \in \mathbb{R}$ with corresponding eigenvector $x$. We will show that $a = 0$. 
+
+\begin{align*}
+Sx &= \lambda x\\
+x^*Sx &= x^* \lambda x\\
+(x^*Sx)^* &= (x^*\lambda x)^*\\
+x^*S^*x &= \overline{\lambda}x^*x\\
+-x^*Sx &= \overline{\lambda}x^*x\\
+x^*Sx &= -\overline{\lambda}x^*x\\
+x^*\lambda x &= -\overline{\lambda}x^*x
+\end{align*}
+
+Therefore $\lambda x^* x = -\overline{\lambda}x^* x$. Since $x^*x = ||x||^2 \neq 0$, this means that $$a+bi = \lambda = -\overline{\lambda} = -(a-bi)$$
+$$a+bi = -a+bi \implies a = -a \implies a = 0\;.$$
+
+Therefore, we see that $\lambda = bi$ is pure imaginary, as we wanted to show.
+\end{document}

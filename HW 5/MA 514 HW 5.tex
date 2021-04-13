@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\setlength{\parindent}{0pt}
+
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{indentfirst}
+
+\title{MA 514 Homework 3}
+\author{Dane Johnson}
+
+\begin{document}
+\maketitle
+
+\section*{Exercise 20.2}
+
+We can say that $L$ is lower triangular and also $l_{ij} = 0$ for $i-j > p$. We can say that $U$ is upper triangular and also that $u_{ij} = 0$ for $j-i > p$. To see this, note that since $A$ satisfies the conditions of exercise 20.1, $A$ has an $LU$ factorization $A = LU$. When $i-j>p$, because $U$ is upper triangular we have
+
+$$a_{ij} = \sum_{k=1}^j l_{ik}u_{kj}  = 0 \quad \text{for } i = 1,...,m-p-1 \;.$$
+
+Therefore, $l_{ij} = 0$ for $i-j > p$. Because $L$ is lower triangular, when $j-i > p$ we have
+
+$$a_{ij} = \sum_{k=1}^i l_{ik}u_{kj} = 0, \quad \text{for } i = 1,...,m-p-1 \;.$$
+
+Therefore, $u_{ij} = 0$ for $j-i > p$.
+
+\section*{Exercise 23.1}
+
+Let $A$ be a nonsingular square matrix and let $A = QR$ and $A^*A = U^*U$ be QR and Cholesky factorizations, respectively, with the usual normalizations $r_{jj}, u_{jj} > 0$. Then it is true that $R = U$. To see this, first we note that since $A$ is nonsingular, $A$ has a unique QR factorization and $A^*A = (QR)^*QR = R^*R$. Also, because $A$ is nonsingular, $Ax \neq 0$ for every $x \neq 0$. Then $x^*A^*Ax = ||Ax||_2^2 > 0$, which shows that $A^*A$ is positive definite. And because $(A^*A)^* = A^*(A^*)^* = A^*A$, $A^*A$ is also hermitian. So by Theorem 23.1, the Cholesky factorization $A^*A = U^*U$ of $A^*A$ is unique. But then $A^*A = R^*R = U^*U$ and both factorizations must be unique, we conclude that $R = U$.
+
+\end{document}

@@ -1,0 +1,203 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{indentfirst}
+
+\title{MA 514 Homework 2}
+\author{Dane Johnson}
+
+\begin{document}
+\maketitle
+
+\section*{Exercise 4.1}
+
+(a) Determine the SVD of the matrix:
+
+$$A = \begin{pmatrix} 3&0\\0&- 2\end{pmatrix} \;.$$
+
+We want a decomposition of the form $A = U\Sigma V^*$, where $U$ and $V$ are unitary matrices and $\Sigma$ a diagonal matrix containing the square roots of the singular values of $A$. We then know that
+
+$$AA^* = U\Sigma V^* V\Sigma^*U^* = U\Sigma\Sigma^*U^* \quad A^*A = V\Sigma^*U^*U \Sigma V^* = V\Sigma^* \Sigma V^* \;.$$
+
+In particular, $U\Sigma \Sigma^* U^*$ and $V\Sigma^* \Sigma V^*$ are a diagonalizations of $A^*A$ (note that  $\Sigma \Sigma^*$ and $\Sigma^* \Sigma$ are diagonal matrices. Therefore we can determine $\Sigma$ and $V$ by determining the eigenvalues of $A^*A$ and finding corresponding eigenvectors.
+
+$$A^*A = \begin{pmatrix} 9 & 0 \\ 0 & 4\end{pmatrix}$$
+
+Since $A^*A$ is diagonal, the eigenvalues are the diagonal elements. The eigenvalues of $A^*A$ are the squares of the singular values of $A$. Thus, $\sigma_1^2 = 9, \sigma_2^2 = 4$ and next we find corresponding normalized eigenvectors to use a columns of $V$ (so that $V$ will be unitary). In this case, since $A^*A$ is diagonal, we can find eigenvectors by inspection as $v_1 = e_1$ and $v_2 = e_2$. So we have 
+
+$$\Sigma = \begin{pmatrix} \sqrt{9} &0 \\ 0 & \sqrt{4}\end{pmatrix} = \begin{pmatrix} 3 &0 \\ 0 & 2 \end{pmatrix} \quad V = \begin{pmatrix}
+1&0 \\ 0 &1 \end{pmatrix}$$
+
+Next, use the requirement that $AV = U\Sigma$ to find $U$.
+
+$$U\Sigma = AV = A = \begin{pmatrix}
+3 &0 \\ 0 &-2 \end{pmatrix}$$
+
+Since $\Sigma$ scales the first column of $U$ by $\sqrt{\sigma_1} = 3$ and scales the second column by $\sqrt{\sigma_2} = 2$, so we have
+
+$$u_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \;, u_2 = \begin{pmatrix}
+0 \\ -1 \end{pmatrix} \implies U  = \begin{pmatrix}
+1 & 0 \\ 0 & -1 \end{pmatrix} \;.$$
+
+We conclude that an SVD factorization of $A$ is given by
+$$A = U\Sigma V^* = \begin{pmatrix}
+1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix}
+3 & 0 \\ 0 & 2 \end{pmatrix} \begin{pmatrix}
+1 & 0 \\ 0 & 1 \end{pmatrix}$$
+
+\section*{Exercise 4.2}
+
+Suppose $A$ is an $m\times n$ matrix and $B$ is the $n\times m$ matrix obtained by rotating $A$ ninety degree clockwise on paper. We prove that $A$ and $B$ have the same singular values. \\
+
+Let $A$ be written as
+
+$$A = \begin{pmatrix}
+a_{11} & a_{12} & ... & a_{1n} \\
+a_{21} & a_{22} & ... & a_{2n} \\
+... & ... & ... & ... \\
+a_{m1} & a_{m2} & ... & a_{mn} \end{pmatrix}$$
+
+Consider $A^T$ (we do not consider $A^*$ in case this is different from $A^T$):
+
+$$A^T = \begin{pmatrix}
+a_{11} & a_{21} & ... & a_{m1} \\
+a_{12} & a_{22} & ... & a_{m2} \\
+... & ... & ... & ... \\
+a_{1n} & a_{2n} & ... & a_{mn} \end{pmatrix}$$
+
+We can reverse the ordering of the columns of $A^T$ by multiplying by the $m\times m$ matrix $P$ that has 1s on the antidiagonal and 0s elsewhere:
+
+$$A^TP = \begin{pmatrix}
+a_{11} & a_{21} & ... & a_{m1} \\
+a_{12} & a_{22} & ... & a_{m2} \\
+... & ... & ... & ... \\
+a_{1n} & a_{2n} & ... & a_{mn} \end{pmatrix}
+\begin{pmatrix}
+0 &... & 0& 1\\
+0& ... &1 & 0\\
+... & ... & ... & ...\\
+1 &0 & ... & 0
+\end{pmatrix} = 
+\begin{pmatrix}
+a_{m1} & ... & a_{21} & a_{11} \\
+a_{m2} & ... & a_{22} & a_{12} \\
+... & ... & ... & ...\\
+a_{mn} & ... & a_{2n} & a_{1n}
+\end{pmatrix} = B
+$$
+
+Therefore, we have found the matrix equation that relates the matrix $A$ and $B$ from the given description of how $B$ is obtained from $A$. Next, since $A$ has an SVD $A = U\Sigma V^*$, we see that $A^T = (V^*)^T\Sigma^T U^T = (V^*)^T\Sigma U^T$. This shows that $A$ has the same singular values as $A^T$ (even if the left and right singular vectors may change). Also, since $P$ is an orthogonal matrix, we have $(A^TP)(A^TP)^* = A^TPP^*(A^T)^* = A^T(A^T)^*$. This implies that the singular values of $A^TP$ are the same as $A^T$ (since these are the square roots of the eigenvalues of $A^T(A^T)^* = (A^TP)(A^TP)^*$. But since $A^TP = B$, we have shown that the singular values of $A^TP=B$ are the same as $A$. Thus, the singular values of $A$ are the same as the singular values of $B$, as desired. 
+
+\section*{Exercise 4.3}
+
+See the MATLAB script for this exercise.
+
+\section*{Exercise 5.3}
+
+Consider the matrix 
+$$A = \begin{pmatrix}
+-2 & 11 \\ -10 & 5
+\end{pmatrix} \; .$$
+
+(a) We will determine a real SVD of $A$ of the form $A = U\Sigma V^T$ such that one has the minimal number of minus signs in $U$ and $V$. Using $AA^* = AA^T = U\Sigma\Sigma^*U^* = U\Sigma^2U^T$, we have that $U\Sigma U^T$ is a diagonalization of $AA^T$. So we will find the eigenvalues, $\sigma_1^2$ and $\sigma_2^2$ of $\Sigma^2$ and corresponding normalized eigenvectors to form $U$. 
+
+\begin{align*}
+0 &= \text{det}(AA^T - \sigma^2 I) \\
+&= \text{det} \left(\begin{pmatrix}
+125 - \sigma & 75 \\ 75 & 125-\sigma^2
+\end{pmatrix} \right) \\
+&= (125-\sigma^2)^2 - 75^2\\
+& \implies \sigma_1^2 = 200, \quad \sigma_2^2 = 50
+\end{align*}
+
+Next find an eigenvector for $\sigma_1^2 = 200$.
+
+$$\begin{pmatrix}
+125-200 & 75 & 0\\ 75 & 125-200 & 0
+\end{pmatrix} = \begin{pmatrix}
+-75 & 75 & 0\\ 75 & -75 & 0
+\end{pmatrix} \sim  \begin{pmatrix}
+1&-1&0 \\ 0&0&0
+\end{pmatrix}$$
+
+$$\implies u_1 = \begin{pmatrix}
+\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}}
+\end{pmatrix}$$
+
+
+Next find an eigenvector for $\sigma_2^2 = 50$.
+
+$$\begin{pmatrix}
+125-50 & 75 & 0\\ 75 & 125-50 & 0
+\end{pmatrix} = \begin{pmatrix}
+75 & 75 & 0\\ 75 & 75 & 0
+\end{pmatrix} \sim  \begin{pmatrix}
+1& 1&0 \\ 0&0&0
+\end{pmatrix}$$
+
+$$\implies u_2 = \begin{pmatrix}
+\frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}}
+\end{pmatrix}$$
+ 
+We take $U = \begin{pmatrix}
+\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+\end{pmatrix}$ and $\Sigma = \begin{pmatrix}
+\sqrt{200} & 0 \\ 0 & \sqrt{50}
+\end{pmatrix} = \begin{pmatrix}
+10\sqrt{2} & 0 \\ 0 & 5\sqrt{2}
+\end{pmatrix}$. 
+
+Then since $A = U\Sigma V^T$, $U^TA = \Sigma V^T$ so that $A^TU\Sigma^{-1} = V$. We can use this to find $V$:
+
+\begin{align*}
+V &= A^TU\Sigma^{-1} \\
+&= \begin{pmatrix}
+-2 & -10 \\ 11 & 5
+\end{pmatrix} \begin{pmatrix}
+\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+\end{pmatrix} \begin{pmatrix}
+\frac{1}{10\sqrt{2}} & 0 \\ 0 & \frac{1}{5\sqrt{2}}
+\end{pmatrix}\\
+&= \begin{pmatrix}
+-2 & -10 \\ 11 & 5
+\end{pmatrix} \begin{pmatrix}
+\frac{1}{20} & \frac{1}{10} \\ \frac{1}{20} & -\frac{1}{10}
+\end{pmatrix} \\
+&= \begin{pmatrix}
+-12/20 & 8/10 \\ 16/20 & 6/10
+\end{pmatrix}\\
+&= \begin{pmatrix}
+-3/5 & 4/5 \\ 4/5 & 3/5
+\end{pmatrix} \;.
+\end{align*} 
+
+Therefore we have a factorization $A = U\Sigma V^T$ with:
+
+$$U = \begin{pmatrix}
+\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+\end{pmatrix}, \quad \Sigma = \begin{pmatrix}
+10\sqrt{2} & 0 \\ 0 & 5\sqrt{2}
+\end{pmatrix}, \quad V = \begin{pmatrix}
+-3/5 & 4/5 \\ 4/5 & 3/5
+\end{pmatrix} \;.$$
+
+(b) The singular values of $A$ are $\sigma_1 = 10\sqrt{2}$ and $\sigma_2 = 5\sqrt{2}$.\\
+
+The left singular vectors of $A$ are:
+
+$$u_1 = \begin{pmatrix}
+\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}}
+\end{pmatrix}, \quad u_2 = \begin{pmatrix}
+\frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}}
+\end{pmatrix} \;.$$
+
+The right singular vectors of $A$ are:
+
+$$v_1 = \begin{pmatrix}
+-3/5 \\ 4/5 
+\end{pmatrix}, \quad v_2 = \begin{pmatrix}
+4/5 \\ 3/5 
+\end{pmatrix} \; .$$
+\end{document}
